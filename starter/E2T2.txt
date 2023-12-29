@@ -1,0 +1,21 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+    1. Injection Attacks: If the deployed code interacts with a database or executes external commands, it may be vulnerable to injection attacks such as SQL injection or OS command injection. To remediate this, it is important to use parameterized queries or prepared statements when interacting with databases, and to sanitize and validate user inputs before using them in commands.
+
+    2. Cross-Site Scripting (XSS): If the deployed code allows user-generated content or fails to properly sanitize user inputs, it may be vulnerable to XSS attacks. To mitigate this, ensure that all user inputs are properly encoded or validated before they are rendered in the HTML output.
+
+    3. Cross-Site Request Forgery (CSRF): If the deployed code does not implement proper CSRF protection, it may be vulnerable to CSRF attacks. To address this, utilize techniques such as CSRF tokens and ensure that all state-changing requests include proper validation to verify the authenticity of the request.
+
+    4. Insecure Direct Object References (IDOR): If the deployed code exposes sensitive information or allows direct access to internal resources without proper authorization checks, it may be susceptible to IDOR vulnerabilities. To prevent this, implement proper access controls and validate user permissions before allowing access to sensitive resources.
+
+    5. Insecure Deserialization: If the deployed code performs deserialization of untrusted data, it may be vulnerable to attacks such as remote code execution or denial of service. To mitigate this, ensure that deserialization is performed in a secure manner, such as using whitelisting, input validation, and integrity checks.
+
+    6. Insufficient Logging and Monitoring: If the deployed code does not have adequate logging and monitoring mechanisms, it may be difficult to detect and respond to security incidents. Implement comprehensive logging of security-relevant events and establish monitoring systems to identify and investigate any suspicious activities.
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+    - Conduct a thorough code review and security assessment to identify and address any vulnerabilities specific to the deployed code.
+    - Implement proper input validation and sanitization techniques to prevent injection attacks and XSS vulnerabilities.
+    - Employ strong authentication and authorization mechanisms to protect against CSRF and IDOR vulnerabilities.
+    - Utilize secure coding practices and libraries to prevent insecure deserialization vulnerabilities.
+    - Implement comprehensive logging and monitoring to detect and respond to security incidents.
+    - Stay updated with security best practices and apply patches and updates to the deployed code and underlying frameworks regularly.

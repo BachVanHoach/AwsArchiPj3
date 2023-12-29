@@ -1,0 +1,9 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1
+Lack of Network Segmentation: The architecture does not include proper network segmentation between the public-facing web service and the web application instance. Both instances are deployed in the same subnet, which increases the attack surface and potential impact of a security breach. Ideally, there should be separate subnets or security groups for the public-facing web service and the web application instance, with stricter access controls and limited communication between them.
+
+# Poor practice 2
+Inadequate Access Controls: The architecture does not implement granular access controls for the S3 buckets. The web application instance is granted full access to both the bucket hosting free recipes and the bucket hosting secret recipes through its IAM role and policy. This means that if the web application instance were compromised, an attacker would have unrestricted access to both types of recipes. It is recommended to enforce least privilege by granting the web application instance only the necessary permissions to access the specific resources it requires, rather than providing full access to all S3 actions.
+
+These poor practices can lead to increased security risks and potential data breaches. It is important to implement proper network segmentation and enforce granular access controls to mitigate these risks and ensure the security of the application and the data it handles.

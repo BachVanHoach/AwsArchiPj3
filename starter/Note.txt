@@ -1,0 +1,55 @@
+aws configure
+aws sts get-caller-identity
+
+username: Hoachbv23
+Pass: B@chvanhoach239
+
+
+Access key
+AKIA2CVH5LVIIFMOVR3R
+
+Secret access key
+9ZKbBymljc9rVMxaOLODpHtX2N6IbVGZ9xFeBS7U
+
+
+S3:
+    Create
+        aws cloudformation create-stack --region us-east-1 --stack-name c3-s3 --template-body file://c3-s3.yml
+    Delete
+        aws cloudformation delete-stack --stack-name c3-s3
+        
+        aws s3 ls
+        aws s3 rb s3://cf-templates-zhuwmtfmjzzr-us-east-1 --force
+    Upload
+        aws s3 cp free_recipe.txt s3://cand-c3-free-recipes-692915625296/ --region us-east-1
+        aws s3 cp secret_recipe.txt s3://cand-c3-secret-recipes-692915625296/ --region us-east-1
+
+Vpc:
+    Create
+        aws cloudformation create-stack --region us-east-1 --stack-name c3-vpc --template-body file://c3-vpc.yml
+    Delete
+        aws cloudformation delete-stack --stack-name c3-vpc
+
+App:
+    Create
+        aws cloudformation create-stack --region us-east-1 --stack-name c3-app --template-body file://c3-app.yml --parameters ParameterKey=KeyPair,ParameterValue=create-stack-key --capabilities CAPABILITY_IAM
+    Delete
+        aws cloudformation delete-stack --stack-name c3-app 
+
+
+
+ssh -i "create-stack-key.pem" ubuntu@ec2-54-237-250-121.compute-1.amazonaws.com
+date
+hydra -l ubuntu -P rockyou.txt ssh://ec2-35-171-74-5.compute-1.amazonaws.com
+
+aws s3 ls  s3://cand-c3-secret-recipes-692915625296/ --region us-east-1
+
+aws s3 cp s3://cand-c3-secret-recipes-692915625296/secret_recipe.txt  .  --region us-east-1
+
+
+ssh -i "create-stack-key.pem" ubuntu@ec2-35-171-74-5.compute-1.amazonaws.com
+
+sudo nano /etc/ssh/sshd_config
+cat /etc/ssh/sshd_config
+
+sudo service ssh restart
